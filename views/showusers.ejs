@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALL USERS</title>
+
+    <style>
+        .table-header {
+            background-color: #f2f2f2;
+        }
+        .user-row {
+            background-color: #eeefd5;
+        }
+        #username {
+            color: #a30e0e;
+            font-weight: bold;
+            font-style: italic;
+        }
+        table, th, td {
+            border: 1px solid #000;
+        }
+        .edbtn {
+            background-color: #008CBA; /* Green */
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 2px 1px;
+            cursor: pointer;
+        }
+        .delbtn {
+            background-color: #a30e0e; /* Red */
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 2px 1px;
+            cursor: pointer;
+        }
+        .addbtn {
+            background-color: #008CBA; /* Blue */
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 2px 1px;
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+<body>
+    <H3>ALL USERS IN THE SYSTEM :</H3>
+    <p>This is a list of all users in the system. in SQL</p>
+    <table>
+        <thead>
+            <tr class="table-header">
+                <th>ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% users.forEach(user => { %>
+            <tr class="user-row">
+                <td><%= user.id %></td>
+                <td id="username"><%= user.userName %></td>
+                <td><%= user.email %></td>
+                <td>
+                <form method="get" action = "/user/<%=user.id%>/edit">
+                        <button class="edbtn">Edit userName</button>
+                    </form>
+                </td>
+                <td>
+          <form method="get" action="/user/<%=user.id%>/delete">
+            <button class="delbtn">Delete</button>
+          </form>
+        </td>
+        
+            </tr>
+            <% }) %>
+            <td>
+          <form method="get" action="/user/new">
+            <button class="addbtn">Add New User +</button>
+          </form>
+        </td>
+        </tbody>
+    </table>
+
+</body>
+</html>
